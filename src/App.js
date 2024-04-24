@@ -28,11 +28,11 @@ const MyLocationMarker = ({ setCurrentPosition }) => {
 
   useEffect(() => {
     // Déclenche immédiatement une localisation au montage du composant
-    map.locate({ setView: false, maxZoom: 50 });
+    map.locate({ setView: true, maxZoom: map.getZoom() });
 
     // Ensuite, continue avec un intervalle régulier
     const locateInterval = setInterval(() => {
-      map.locate({ setView: false, maxZoom: 50 });
+      map.locate({ setView: false, maxZoom: map.getZoom() });
     }, 500); // Mise à jour toutes les secondes
     
     // Fonction de nettoyage pour arrêter l'intervalle lors du démontage du composant
@@ -62,7 +62,7 @@ const LocationUpdater = ({ setGeolocation }) => {
 
     // Ensuite, continue avec un intervalle régulier
     const locateInterval = setInterval(() => {
-      map.locate({ setView: true, maxZoom: 50 });
+      map.locate({ setView: true, maxZoom: map.getZoom() });
     }, 1000);
     
     // Fonction de nettoyage pour arrêter l'intervalle lors du démontage du composant
@@ -197,18 +197,18 @@ const App = () => {
       </button>
       <p className="response">Réponse : {message}</p>
       <p className="chrono">{formatTime(secondsElapsed)}</p>
-      <div style={{ display: 'grid', justifyContent: 'center', alignItems: 'center', height: '50vh', marginTop: "20px" }}>
-        <MapContainer center={[43.700001, 7.25]} zoom={50} style={{ height: '50vh', width: '70vh' }}>{/*scrollWheelZoom={false}*/}
+      <div style={{ width: '100%', height: '50vh', marginTop: "20px" }}>        
+        <MapContainer center={[43.700001, 7.25]} zoom={20} style={{ height: '100%', width: '100%' }}>{/*scrollWheelZoom={false}*/}
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <MyLocationMarker setCurrentPosition={setCurrentPosition} />
-          <Marker icon={me} position={currentPosition}>
-            <Popup>
-            {message}
-            </Popup>
-          </Marker>
+          <Marker icon={me} position={currentPosition}></Marker>
+
+          {isTracking && <LocationUpdater setGeolocation={setGeolocation} />}
+          {geolocation && <Polyline positions={geolocation}></Polyline>}
+          
           {startPosition && (
             <Marker icon={marker} position={startPosition}>
               <Popup>
@@ -216,8 +216,6 @@ const App = () => {
               </Popup>
             </Marker>
           )}
-          {isTracking && <LocationUpdater setGeolocation={setGeolocation} />}
-          {geolocation && <Polyline positions={geolocation}></Polyline>}
           {lastPosition && !isTracking && (
             <Marker icon={marker} position={lastPosition}>
               <Popup>
