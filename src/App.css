@@ -1,0 +1,75 @@
+.dictaphone-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f3f3f3;
+  /* Light grey background */
+  font-family: 'Arial', sans-serif;
+}
+
+.microphone-status {
+  background: none;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+}
+
+.microphone-status img {
+  width: 50px;
+  /* You can adjust this size to your preference */
+  height: auto;
+}
+
+/* Additional hover effect to give users feedback when they can interact */
+.microphone-status:hover {
+  transform: scale(1.1);
+}
+
+.button {
+  background-color: #007bff;
+  /* Bootstrap primary blue */
+  color: white;
+  padding: 10px 15px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: #0056b3;
+  /* Darken the button on hover */
+}
+
+.response {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Soft shadow for depth */
+  width: 80%;
+  /* You may want to adjust this depending on your layout */
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+
+  .button,
+  .microphone-status {
+    padding: 8px 12px;
+    margin: 5px;
+  }
+
+  .response {
+    width: 90%;
+  }
+}
