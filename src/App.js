@@ -20,7 +20,7 @@ const marker = new L.Icon({
 
 const me = new L.Icon({
   iconUrl: require("./me.png"),
-  iconSize: [8, 8]
+  iconSize: [7, 7]
 })
 
 const MyLocationMarker = ({ setCurrentPosition }) => {
