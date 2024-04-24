@@ -28,11 +28,11 @@ const MyLocationMarker = ({ setCurrentPosition }) => {
 
   useEffect(() => {
     // Déclenche immédiatement une localisation au montage du composant
-    map.locate({ setView: true, maxZoom: 50 });
+    map.locate({ setView: false, maxZoom: 50 });
 
     // Ensuite, continue avec un intervalle régulier
     const locateInterval = setInterval(() => {
-      map.locate({ setView: false, maxZoom: 4 });
+      map.locate({ setView: false, maxZoom: 50 });
     }, 500); // Mise à jour toutes les secondes
     
     // Fonction de nettoyage pour arrêter l'intervalle lors du démontage du composant
@@ -58,11 +58,11 @@ const LocationUpdater = ({ setGeolocation }) => {
 
   useEffect(() => {
     // Déclenche immédiatement une localisation au montage du composant
-    map.locate({ setView: true, maxZoom: map.getZoom() });
+    map.locate({ setView: false, maxZoom: map.getZoom() });
 
     // Ensuite, continue avec un intervalle régulier
     const locateInterval = setInterval(() => {
-      map.locate({ setView: true, maxZoom: 30 });
+      map.locate({ setView: true, maxZoom: 50 });
     }, 1000);
     
     // Fonction de nettoyage pour arrêter l'intervalle lors du démontage du composant
