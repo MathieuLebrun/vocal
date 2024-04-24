@@ -197,7 +197,7 @@ const App = () => {
       </button>
       <p className="response">Réponse : {message}</p>
       <p className="chrono">{formatTime(secondsElapsed)}</p>
-      <div style={{ width: '100%', height: '50vh', marginTop: "20px" }}>        
+      <div style={{ width: '100%', height: '50vh', marginTop: "20px", marginLeft: "10%", marginRight: "10%" }}>        
         <MapContainer center={[43.700001, 7.25]} zoom={20} style={{ height: '100%', width: '100%' }}>{/*scrollWheelZoom={false}*/}
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -208,7 +208,7 @@ const App = () => {
 
           {isTracking && <LocationUpdater setGeolocation={setGeolocation} />}
           {geolocation && <Polyline positions={geolocation}></Polyline>}
-          
+
           {startPosition && (
             <Marker icon={marker} position={startPosition}>
               <Popup>
