@@ -192,12 +192,7 @@ const App = () => {
     return <span>Browser doesn't support speech recognition.</span>;
   }
 
-
-
-  const position = [51.505, -0.09]
-  
-
-  
+  // const position = [51.505, -0.09]
 
   return (
     <div className="dictaphone-container">
